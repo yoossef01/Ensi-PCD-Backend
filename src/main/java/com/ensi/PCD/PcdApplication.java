@@ -33,7 +33,7 @@ public class PcdApplication implements CommandLineRunner {
 
     public void run(String... args) throws Exception {
     }
-    @Bean
+   @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);

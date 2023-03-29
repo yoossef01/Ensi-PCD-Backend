@@ -23,7 +23,8 @@ public class product {
  private double prix_achat;
  @ManyToOne
  private category categorie;
-
+    @ManyToOne
+    private magasin magasin;
  public product(String nom, double prix, category categorie) {
  }
 
