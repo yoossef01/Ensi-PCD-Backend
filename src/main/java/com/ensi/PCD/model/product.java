@@ -2,6 +2,7 @@ package com.ensi.PCD.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 //
 //Source code recreated from a .class file by IntelliJ IDEA
