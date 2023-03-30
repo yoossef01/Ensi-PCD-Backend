@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface TokenVendeurRepository extends JpaRepository<TokenVendeur, Integer> {
     @Query(value = """
-      select t from Token t inner join Client u\s
-      on t.client.id = u.id\s
+      select t from TokenVendeur t inner join Vendeur u\s
+      on t.Vendeur.id = u.id\s
       where u.id = :id and (t.expired = false or t.revoked = false)\s
       """)
     List<TokenVendeur> findAllValidTokenByUser(Integer id);
