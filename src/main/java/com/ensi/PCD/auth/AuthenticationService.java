@@ -89,7 +89,7 @@ public class AuthenticationService {
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
             .fax(request.getFax())
-            .role(RoleVendeur.USER)
+            .role(RoleVendeur.VENDEUR)
             .build();
     var savedVendeur = vendeurRepository.save(vendeur);
     var jwtToken = jwtService.generateToken(vendeur);
