@@ -27,5 +27,19 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.authenticate(request));
   }
 
+  @PostMapping("/registerVend")
+  public ResponseEntity<AuthenticationResponse> registerVendeur(
+          @RequestBody RegisterVendeurRequest requestVendeur
+  ) {
+    return ResponseEntity.ok(service.registerVendeur(requestVendeur));
+  }
+  @PostMapping("/authenticateVend")
+  public ResponseEntity<AuthenticationResponse> authenticateVendeur(
+          @RequestBody AuthenticationRequest requestVendeur
+  ) {
+    return ResponseEntity.ok(service.authenticateVendeur(requestVendeur));
+  }
+
+
 
 }
