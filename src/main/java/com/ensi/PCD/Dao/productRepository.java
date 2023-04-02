@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface productRepository extends JpaRepository<product, String> {
     @Query("select p from product p where p.categorie.id=:x")
     List<product> getProductsByCate(@Param("x") Integer cat);
+    @Query("select p from product p where p.magasin.id=:x")
+    List<product> getProductsByMagasin(@Param("x") Integer mag);
 }

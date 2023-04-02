@@ -74,6 +74,9 @@ public class productService implements produitInterfaceServices {
  public List<product> getProductsByCat(Integer idcat) {
      return this.pr.getProductsByCate(idcat);
  }
+    public List<product> getProductsByMagasin(Integer idmag) {
+        return this.pr.getProductsByMagasin(idmag);
+    }
 
  public void deleteProduct(String idp) {
      this.pr.deleteById(idp);

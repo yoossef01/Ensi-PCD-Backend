@@ -24,12 +24,12 @@ public class product {
  private double prix_achat;
  @ManyToOne
  private category categorie;
-    @ManyToOne
+ @ManyToOne
     private magasin magasin;
  public product(String nom, double prix, category categorie) {
  }
 
- public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat) {
+ public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat,magasin m1) {
      this.Id = string;
      this.nom = nom;
      this.prix = prix;
@@ -37,6 +37,7 @@ public class product {
      this.photo = string2;
      this.categorie = c1;
      this.prix_achat = prixAchat;
+     this.magasin=m1;
  }
 
  public String getId() {
@@ -66,7 +67,9 @@ public class product {
  public category getCategorie() {
      return this.categorie;
  }
-
+    public magasin getMagasin() {
+        return this.magasin;
+    }
  public void setId(final String Id) {
      this.Id = Id;
  }
@@ -94,9 +97,13 @@ public class product {
  public void setCategorie(final category categorie) {
      this.categorie = categorie;
  }
+    public void setMagasin(final magasin magasin) {
+        this.magasin = magasin;
+    }
 
 
- public product(final String Id, final String nom, final String photo, final double prix, final int quantite, final double prix_achat, final category categorie) {
+ public product(final String Id, final String nom, final String photo, final double prix,
+                final int quantite, final double prix_achat, final category categorie,final magasin magasin) {
      this.Id = Id;
      this.nom = nom;
      this.photo = photo;
@@ -104,6 +111,7 @@ public class product {
      this.quantite = quantite;
      this.prix_achat = prix_achat;
      this.categorie = categorie;
+     this.magasin=magasin;
  }
 
  public product() {
