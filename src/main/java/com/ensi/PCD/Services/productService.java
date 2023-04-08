@@ -35,6 +35,9 @@ public class productService implements produitInterfaceServices {
 
      this.pr.save(p);
  }
+ public  void saveP(product p){
+     this.pr.save(p);
+ }
 
  public String UploadPhoto(MultipartFile mf) {
      String nom = mf.getOriginalFilename();

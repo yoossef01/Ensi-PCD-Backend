@@ -1,8 +1,11 @@
 package com.ensi.PCD.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 //
 //Source code recreated from a .class file by IntelliJ IDEA
@@ -16,7 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 public class product {
  @jakarta.persistence.Id
- private String Id;
+ private String id;
  private String nom;
  private String photo;
  private double prix;
@@ -26,11 +29,14 @@ public class product {
  private category categorie;
  @ManyToOne
     private magasin magasin;
+ @OneToMany
+
+    private List<achat> achats;
  public product(String nom, double prix, category categorie) {
  }
 
  public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat,magasin m1) {
-     this.Id = string;
+     this.id = string;
      this.nom = nom;
      this.prix = prix;
      this.quantite = i;
@@ -41,7 +47,7 @@ public class product {
  }
 
  public String getId() {
-     return this.Id;
+     return this.id;
  }
 
  public String getNom() {
@@ -70,8 +76,10 @@ public class product {
     public magasin getMagasin() {
         return this.magasin;
     }
+
+    public List<achat> getAchats(){return this.achats;}
  public void setId(final String Id) {
-     this.Id = Id;
+     this.id = Id;
  }
 
  public void setNom(final String nom) {
@@ -102,9 +110,12 @@ public class product {
     }
 
 
+public void setAchat(final List<achat> a){this.achats=a;}
+
  public product(final String Id, final String nom, final String photo, final double prix,
-                final int quantite, final double prix_achat, final category categorie,final magasin magasin) {
-     this.Id = Id;
+                final int quantite, final double prix_achat, final category categorie,final magasin magasin,
+ final List<achat> achat) {
+     this.id = Id;
      this.nom = nom;
      this.photo = photo;
      this.prix = prix;
@@ -112,6 +123,7 @@ public class product {
      this.prix_achat = prix_achat;
      this.categorie = categorie;
      this.magasin=magasin;
+     this.achats= achat;
  }
 
  public product() {

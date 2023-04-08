@@ -13,14 +13,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin({"*"})
@@ -43,6 +37,10 @@ public class productController {
  @DeleteMapping({"/del/{id}"})
  public void delete(@PathVariable String id) {
      this.sp.deleteProduct(id);
+ }
+ @PostMapping("/save")
+ public  void saveP(@RequestBody product p){
+     this.sp.saveP(p );
  }
 
  @PostMapping({"/add"})
