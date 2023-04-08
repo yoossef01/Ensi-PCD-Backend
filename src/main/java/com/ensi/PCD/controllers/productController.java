@@ -55,7 +55,10 @@ public class productController {
      }
 
  }
-
+@GetMapping({"/productByCat/{id}"})
+public List<product> getProductsByCat(@PathVariable Integer id){
+     return this.sp.getProductsByCat( id );
+    }
  @GetMapping({"/productById/{id}"})
  public product getProduitbById(@PathVariable String id) {
      return this.sp.getProduit(id);
