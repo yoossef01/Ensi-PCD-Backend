@@ -1,5 +1,8 @@
 package com.ensi.PCD.model;
 
+import com.ensi.PCD.config.GrantedAuthorityDeserializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_vendeur")
+
 public class Vendeur implements UserDetails {
 
     @Id
@@ -34,9 +38,12 @@ public class Vendeur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private RoleVendeur role;
 
-
+    @OneToMany(mappedBy = "vendeur")
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    private  List<product> produits;
 
     @Override
+    @JsonDeserialize(using = GrantedAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
@@ -69,5 +76,9 @@ public class Vendeur implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setIdTemplate(Integer idTemplate) {
+        this.idTemplate = idTemplate;
     }
 }

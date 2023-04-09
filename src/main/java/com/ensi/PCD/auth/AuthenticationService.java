@@ -5,6 +5,7 @@ import com.ensi.PCD.config.JwtService;
 import com.ensi.PCD.model.Role;
 import com.ensi.PCD.Dao.UserRepository;
 import com.ensi.PCD.model.RoleVendeur;
+import com.ensi.PCD.model.Vendeur;
 import com.ensi.PCD.token.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -84,7 +85,7 @@ public class AuthenticationService {
             .idTemplate(request.getIdTemplate())
             .nom(request.getNom())
             .prenom(request.getPrenom())
-            .adresse(request.getAddresse())
+            .adresse(request.getAdresse())
             .tel(request.getTel())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
@@ -137,5 +138,14 @@ public class AuthenticationService {
     return AuthenticationResponse.builder()
             .token(jwtToken)
             .build();
+  }
+  public Vendeur getVendeurByEmail(String email){
+    return  this.vendeurRepository.findByEmail( email ).get();
+  }
+  public Vendeur getVendeurById(Integer id) {
+    return this.vendeurRepository.findById(id).get();
+  }
+  public void SaveVendeur(Vendeur v){
+    this.vendeurRepository.save( v );
   }
 }

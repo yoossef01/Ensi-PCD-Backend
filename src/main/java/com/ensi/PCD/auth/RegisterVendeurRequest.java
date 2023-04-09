@@ -13,7 +13,7 @@ public class RegisterVendeurRequest {
     private Integer idTemplate;
     private String nom;
     private String prenom;
-    private String addresse;
+    private String adresse;
     private String tel;
     private String email;
     private String password;

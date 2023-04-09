@@ -1,5 +1,6 @@
 package com.ensi.PCD.auth;
 
+import com.ensi.PCD.model.Vendeur;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,25 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.authenticateVendeur(requestVendeur));
   }
-
-
+  @GetMapping("/vendeur/{id}")
+  public ResponseEntity<Vendeur> getVendeurById(@PathVariable("id") Integer id) {
+    var vendeur = service.getVendeurById(id);
+    if (vendeur == null) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(vendeur);
+  }
+  @GetMapping("/vendeur/email/{email}")
+  public ResponseEntity<Vendeur> getVendeurByEmail(@PathVariable("email") String email) {
+    var vendeur = service.getVendeurByEmail(email);
+    if (vendeur == null) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(vendeur);
+  }
+  @PutMapping("/update")
+  public void updateVendeur(@RequestBody Vendeur v){
+    this.service.SaveVendeur( v );
+  }
 
 }
