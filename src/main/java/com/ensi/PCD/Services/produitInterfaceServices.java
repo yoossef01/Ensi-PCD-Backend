@@ -22,7 +22,7 @@ public interface produitInterfaceServices {
  product getProduit(String idProduct);
 
  List<product> getProductsByCat(Integer idcat);
-
+ List<product> getProductsByVendeur(Integer idcat);
  void deleteProduct(String idp);
 }
 

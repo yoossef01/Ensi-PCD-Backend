@@ -32,6 +32,8 @@ public class product {
  @OneToMany
 
     private List<achat> achats;
+@ManyToOne
+private  Vendeur vendeur;
  public product(String nom, double prix, category categorie) {
  }
 

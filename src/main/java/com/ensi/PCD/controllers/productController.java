@@ -33,7 +33,10 @@ public class productController {
  public List<product> getproduitsparCate(@PathVariable Integer id) {
      return this.sp.getProductsByCat(id);
  }
-
+    @GetMapping({"/productsByVendeur/{id}"})
+    public List<product> getproduitsparVendeur(@PathVariable Integer id) {
+        return this.sp.getProductsByVendeur(id);
+    }
  @DeleteMapping({"/del/{id}"})
  public void delete(@PathVariable String id) {
      this.sp.deleteProduct(id);
