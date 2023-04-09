@@ -1,6 +1,5 @@
 package com.ensi.PCD.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -27,17 +26,16 @@ public class product {
  private double prix_achat;
  @ManyToOne
  private category categorie;
- @ManyToOne
-    private magasin magasin;
+
  @OneToMany
 
-    private List<achat> achats;
+    private List<commande> commandes;
 @ManyToOne
 private  Vendeur vendeur;
  public product(String nom, double prix, category categorie) {
  }
 
- public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat,magasin m1) {
+ public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat,Vendeur v) {
      this.id = string;
      this.nom = nom;
      this.prix = prix;
@@ -45,7 +43,7 @@ private  Vendeur vendeur;
      this.photo = string2;
      this.categorie = c1;
      this.prix_achat = prixAchat;
-     this.magasin=m1;
+     this.vendeur=v;
  }
 
  public String getId() {
@@ -75,11 +73,11 @@ private  Vendeur vendeur;
  public category getCategorie() {
      return this.categorie;
  }
-    public magasin getMagasin() {
-        return this.magasin;
+    public Vendeur getVendeur() {
+        return this.vendeur;
     }
 
-    public List<achat> getAchats(){return this.achats;}
+    public List<commande> getCommandes(){return this.commandes;}
  public void setId(final String Id) {
      this.id = Id;
  }
@@ -107,16 +105,16 @@ private  Vendeur vendeur;
  public void setCategorie(final category categorie) {
      this.categorie = categorie;
  }
-    public void setMagasin(final magasin magasin) {
-        this.magasin = magasin;
+    public void setVendeur(final Vendeur v) {
+        this.vendeur = v;
     }
 
 
-public void setAchat(final List<achat> a){this.achats=a;}
+public void setCommandes(final List<commande> a){this.commandes =a;}
 
  public product(final String Id, final String nom, final String photo, final double prix,
-                final int quantite, final double prix_achat, final category categorie,final magasin magasin,
- final List<achat> achat) {
+                final int quantite, final double prix_achat, final category categorie,final Vendeur v,
+ final List<commande> commande) {
      this.id = Id;
      this.nom = nom;
      this.photo = photo;
@@ -124,8 +122,8 @@ public void setAchat(final List<achat> a){this.achats=a;}
      this.quantite = quantite;
      this.prix_achat = prix_achat;
      this.categorie = categorie;
-     this.magasin=magasin;
-     this.achats= achat;
+     this.vendeur=v;
+     this.commandes = commande;
  }
 
  public product() {

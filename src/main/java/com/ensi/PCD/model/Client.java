@@ -34,12 +34,79 @@ public class Client implements UserDetails {
   @Enumerated(EnumType.STRING)
   private Role role;
 
+
   @OneToMany(mappedBy = "client")
   private List<Token> tokens;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(new SimpleGrantedAuthority(role.name()));
+  }
+  public Client(String nom, String prenom, String adresse, String tel, String email, String password, Role role) {
+    this.nom = nom;
+    this.prenom = prenom;
+    this.adresse = adresse;
+    this.tel = tel;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+  }
+  public  String getNom(){return  this.nom;}
+
+  public String getPrenom() {
+    return prenom;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public Role getRole() {
+    return role;
+  }
+
+  public String getAdresse() {
+    return adresse;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public void setAdresse(String adresse) {
+    this.adresse = adresse;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
+
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
   }
 
   @Override
@@ -52,10 +119,12 @@ public class Client implements UserDetails {
     return email;
   }
 
+
   @Override
   public boolean isAccountNonExpired() {
     return true;
   }
+
 
   @Override
   public boolean isAccountNonLocked() {

@@ -1,5 +1,4 @@
 package com.ensi.PCD.model;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-public class achat {
+public class commande {
     @jakarta.persistence.Id
     private String id;
     private double montant;
@@ -19,7 +18,7 @@ public class achat {
 
     @ManyToOne
     private product product;
-    public achat(String id, double m,int q, Date d){
+    public commande(String id, double m, int q, Date d){
         this.id=id;
         this.montant=m;
         this.quantite=q;
@@ -53,12 +52,12 @@ public class achat {
 public  void setProduct(final product product){
         this.product= product;
 }
-    public achat(final String id,final double m,final int q,final Date d,final product p){
+    public commande(final String id, final double m, final int q, final Date d, final product p){
        this.id=id;
         this.montant=m;
         this.quantite=q;
         this.date=d;
         this.product=p;
     }
-    public achat(){}
+    public commande(){}
 }

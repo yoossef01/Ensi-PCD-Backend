@@ -1,6 +1,8 @@
 package com.ensi.PCD.auth;
 
+import com.ensi.PCD.model.Role;
 import com.ensi.PCD.model.Vendeur;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +19,7 @@ public class AuthenticationController {
 
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegisterRequest request
+      @RequestBody RegisterVendeurRequest request
   ) {
     return ResponseEntity.ok(service.register(request));
   }
@@ -28,12 +30,14 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.authenticate(request));
   }
 
+
   @PostMapping("/registerVend")
   public ResponseEntity<AuthenticationResponse> registerVendeur(
           @RequestBody RegisterVendeurRequest requestVendeur
   ) {
     return ResponseEntity.ok(service.registerVendeur(requestVendeur));
   }
+
   @PostMapping("/authenticateVend")
   public ResponseEntity<AuthenticationResponse> authenticateVendeur(
           @RequestBody AuthenticationRequest requestVendeur
@@ -48,6 +52,7 @@ public class AuthenticationController {
     }
     return ResponseEntity.ok(vendeur);
   }
+
   @GetMapping("/vendeur/email/{email}")
   public ResponseEntity<Vendeur> getVendeurByEmail(@PathVariable("email") String email) {
     var vendeur = service.getVendeurByEmail(email);

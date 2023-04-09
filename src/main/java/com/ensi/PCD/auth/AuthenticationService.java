@@ -10,8 +10,11 @@ import com.ensi.PCD.token.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @RequiredArgsConstructor
@@ -24,19 +27,20 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
-  public AuthenticationResponse register(RegisterRequest request) {
+  public AuthenticationResponse register(RegisterVendeurRequest request) {
     var user = com.ensi.PCD.model.Client.builder()
         .nom(request.getNom())
-        .prenom(request.getPrenom()).adresse(request.getAddresse()).tel(request.getTel())
+        .prenom(request.getPrenom()).adresse(request.getAdresse()).tel(request.getTel())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
         .build();
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
-    saveUserToken(savedUser, jwtToken);
+    saveUserToken(  savedUser, jwtToken);
     return AuthenticationResponse.builder()
         .token(jwtToken)
+
         .build();
   }
 
@@ -55,8 +59,10 @@ public class AuthenticationService {
     saveUserToken(user, jwtToken);
     return AuthenticationResponse.builder()
         .token(jwtToken)
+
         .build();
   }
+
 
   private void saveUserToken(com.ensi.PCD.model.Client client, String jwtToken) {
     var token = Token.builder()
@@ -137,6 +143,7 @@ public class AuthenticationService {
     saveVendeurToken(vendeur, jwtToken);
     return AuthenticationResponse.builder()
             .token(jwtToken)
+            .role(vendeur.getRole())
             .build();
   }
   public Vendeur getVendeurByEmail(String email){
@@ -148,4 +155,6 @@ public class AuthenticationService {
   public void SaveVendeur(Vendeur v){
     this.vendeurRepository.save( v );
   }
+
 }
+
