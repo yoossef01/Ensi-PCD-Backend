@@ -42,6 +42,9 @@ public class Vendeur implements UserDetails {
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private  List<product> produits;
 
+    @OneToMany(mappedBy = "vendeur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Achat> achats;
+
     @Override
     @JsonDeserialize(using = GrantedAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {

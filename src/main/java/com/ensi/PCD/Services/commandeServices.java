@@ -16,7 +16,6 @@ public class commandeServices {
 public  void saveCommande(commande commande){
     if (commande.getId() == null) {
         commande.setId( UUID.randomUUID().toString());
-
     }
     this.commandeRepository.save( commande );
 }

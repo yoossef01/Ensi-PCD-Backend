@@ -32,6 +32,9 @@ public class product {
     private List<commande> commandes;
 @ManyToOne
 private  Vendeur vendeur;
+@OneToMany
+    private List<Achat> achats;
+
  public product(String nom, double prix, category categorie) {
  }
 
