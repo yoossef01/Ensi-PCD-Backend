@@ -35,6 +35,10 @@ public class productService implements produitInterfaceServices {
 
      this.pr.save(p);
  }
+ public void createProduit(product product,MultipartFile mf){this.saveProduct( product,mf );}
+ public  void saveP(product p){
+     this.pr.save(p);
+ }
 
  public String UploadPhoto(MultipartFile mf) {
      String nom = mf.getOriginalFilename();
@@ -74,8 +78,9 @@ public class productService implements produitInterfaceServices {
  public List<product> getProductsByCat(Integer idcat) {
      return this.pr.getProductsByCate(idcat);
  }
-    public List<product> getProductsByMagasin(Integer idmag) {
-        return this.pr.getProductsByMagasin(idmag);
+
+    public List<product> getProductsByVendeur(Integer id) {
+        return this.pr.getProductsByVendeur(id);
     }
 
  public void deleteProduct(String idp) {

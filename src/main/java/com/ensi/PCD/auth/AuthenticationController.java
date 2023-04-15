@@ -1,6 +1,8 @@
 package com.ensi.PCD.auth;
 
+import com.ensi.PCD.model.Vendeur;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -21,9 +23,7 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/authenticate")
-  public ResponseEntity<AuthenticationResponse> authenticate(
-      @RequestBody AuthenticationRequest request
-  ) {
+  public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
     return ResponseEntity.ok(service.authenticate(request));
   }
 
@@ -33,13 +33,13 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.registerVendeur(requestVendeur));
   }
+
   @PostMapping("/authenticateVend")
   public ResponseEntity<AuthenticationResponse> authenticateVendeur(
           @RequestBody AuthenticationRequest requestVendeur
   ) {
     return ResponseEntity.ok(service.authenticateVendeur(requestVendeur));
   }
-
 
 
 }

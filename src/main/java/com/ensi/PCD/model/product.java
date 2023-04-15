@@ -1,8 +1,11 @@
 package com.ensi.PCD.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 //
 //Source code recreated from a .class file by IntelliJ IDEA
@@ -16,7 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 public class product {
  @jakarta.persistence.Id
- private String Id;
+ private String id;
  private String nom;
  private String photo;
  private double prix;
@@ -24,24 +27,32 @@ public class product {
  private double prix_achat;
  @ManyToOne
  private category categorie;
- @ManyToOne
-    private magasin magasin;
+
+ @OneToMany
+
+    private List<commande> commandes;
+@ManyToOne
+@JsonBackReference
+private  Vendeur vendeur;
+@OneToMany
+    private List<Achat> achats;
+
  public product(String nom, double prix, category categorie) {
  }
 
- public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat,magasin m1) {
-     this.Id = string;
+ public product(String string, String nom, int prix, int i, String string2, category c1, int prixAchat,Vendeur v) {
+     this.id = string;
      this.nom = nom;
      this.prix = prix;
      this.quantite = i;
      this.photo = string2;
      this.categorie = c1;
      this.prix_achat = prixAchat;
-     this.magasin=m1;
+     this.vendeur=v;
  }
 
  public String getId() {
-     return this.Id;
+     return this.id;
  }
 
  public String getNom() {
@@ -67,11 +78,13 @@ public class product {
  public category getCategorie() {
      return this.categorie;
  }
-    public magasin getMagasin() {
-        return this.magasin;
+    public Vendeur getVendeur() {
+        return this.vendeur;
     }
+
+    public List<commande> getCommandes(){return this.commandes;}
  public void setId(final String Id) {
-     this.Id = Id;
+     this.id = Id;
  }
 
  public void setNom(final String nom) {
@@ -97,21 +110,25 @@ public class product {
  public void setCategorie(final category categorie) {
      this.categorie = categorie;
  }
-    public void setMagasin(final magasin magasin) {
-        this.magasin = magasin;
+    public void setVendeur(final Vendeur v) {
+        this.vendeur = v;
     }
 
 
+public void setCommandes(final List<commande> a){this.commandes =a;}
+
  public product(final String Id, final String nom, final String photo, final double prix,
-                final int quantite, final double prix_achat, final category categorie,final magasin magasin) {
-     this.Id = Id;
+                final int quantite, final double prix_achat, final category categorie,final Vendeur v,
+ final List<commande> commande) {
+     this.id = Id;
      this.nom = nom;
      this.photo = photo;
      this.prix = prix;
      this.quantite = quantite;
      this.prix_achat = prix_achat;
      this.categorie = categorie;
-     this.magasin=magasin;
+     this.vendeur=v;
+     this.commandes = commande;
  }
 
  public product() {

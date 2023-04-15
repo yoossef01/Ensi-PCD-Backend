@@ -5,12 +5,14 @@ import com.ensi.PCD.config.JwtService;
 import com.ensi.PCD.model.Role;
 import com.ensi.PCD.Dao.UserRepository;
 import com.ensi.PCD.model.RoleVendeur;
+import com.ensi.PCD.model.Vendeur;
 import com.ensi.PCD.token.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @RequiredArgsConstructor
@@ -26,16 +28,17 @@ public class AuthenticationService {
   public AuthenticationResponse register(RegisterRequest request) {
     var user = com.ensi.PCD.model.Client.builder()
         .nom(request.getNom())
-        .prenom(request.getPrenom()).adresse(request.getAddresse()).tel(request.getTel())
+        .prenom(request.getPrenom()).adresse(request.getAdresse()).tel(request.getTel())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
         .build();
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
-    saveUserToken(savedUser, jwtToken);
+    saveUserToken(  savedUser, jwtToken);
     return AuthenticationResponse.builder()
         .token(jwtToken)
+
         .build();
   }
 
@@ -54,8 +57,10 @@ public class AuthenticationService {
     saveUserToken(user, jwtToken);
     return AuthenticationResponse.builder()
         .token(jwtToken)
+
         .build();
   }
+
 
   private void saveUserToken(com.ensi.PCD.model.Client client, String jwtToken) {
     var token = Token.builder()
@@ -84,7 +89,7 @@ public class AuthenticationService {
             .idTemplate(request.getIdTemplate())
             .nom(request.getNom())
             .prenom(request.getPrenom())
-            .adresse(request.getAddresse())
+            .adresse(request.getAdresse())
             .tel(request.getTel())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
@@ -96,6 +101,7 @@ public class AuthenticationService {
     saveVendeurToken(savedVendeur, jwtToken);
     return AuthenticationResponse.builder()
             .token(jwtToken)
+
             .build();
   }
 
@@ -136,6 +142,9 @@ public class AuthenticationService {
     saveVendeurToken(vendeur, jwtToken);
     return AuthenticationResponse.builder()
             .token(jwtToken)
+
             .build();
   }
+
 }
+
