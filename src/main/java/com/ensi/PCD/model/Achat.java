@@ -1,5 +1,6 @@
 package com.ensi.PCD.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Achat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendeur_id", nullable = false)
+    @JsonBackReference
     private Vendeur vendeur;
 
 

@@ -1,9 +1,8 @@
 package com.ensi.PCD.auth;
 
-import com.ensi.PCD.model.Role;
 import com.ensi.PCD.model.Vendeur;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -19,17 +18,14 @@ public class AuthenticationController {
 
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegisterVendeurRequest request
+      @RequestBody RegisterRequest request
   ) {
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/authenticate")
-  public ResponseEntity<AuthenticationResponse> authenticate(
-      @RequestBody AuthenticationRequest request
-  ) {
+  public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
     return ResponseEntity.ok(service.authenticate(request));
   }
-
 
   @PostMapping("/registerVend")
   public ResponseEntity<AuthenticationResponse> registerVendeur(
@@ -44,26 +40,6 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.authenticateVendeur(requestVendeur));
   }
-  @GetMapping("/vendeur/{id}")
-  public ResponseEntity<Vendeur> getVendeurById(@PathVariable("id") Integer id) {
-    var vendeur = service.getVendeurById(id);
-    if (vendeur == null) {
-      return ResponseEntity.notFound().build();
-    }
-    return ResponseEntity.ok(vendeur);
-  }
 
-  @GetMapping("/vendeur/email/{email}")
-  public ResponseEntity<Vendeur> getVendeurByEmail(@PathVariable("email") String email) {
-    var vendeur = service.getVendeurByEmail(email);
-    if (vendeur == null) {
-      return ResponseEntity.notFound().build();
-    }
-    return ResponseEntity.ok(vendeur);
-  }
-  @PutMapping("/update")
-  public void updateVendeur(@RequestBody Vendeur v){
-    this.service.SaveVendeur( v );
-  }
 
 }

@@ -1,6 +1,7 @@
 package com.ensi.PCD.model;
 
 import com.ensi.PCD.config.GrantedAuthorityDeserializer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
@@ -40,9 +41,11 @@ public class Vendeur implements UserDetails {
 
     @OneToMany(mappedBy = "vendeur")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    @JsonManagedReference
     private  List<product> produits;
 
     @OneToMany(mappedBy = "vendeur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Achat> achats;
 
     @Override
