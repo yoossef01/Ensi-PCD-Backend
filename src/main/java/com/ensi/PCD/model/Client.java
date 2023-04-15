@@ -1,6 +1,7 @@
 package com.ensi.PCD.model;
 
 import com.ensi.PCD.token.Token;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +37,7 @@ public class Client implements UserDetails {
 
 
   @OneToMany(mappedBy = "client")
+  @JsonManagedReference
   private List<Token> tokens;
 
   @Override

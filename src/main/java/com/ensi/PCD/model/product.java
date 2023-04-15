@@ -1,5 +1,6 @@
 package com.ensi.PCD.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -31,7 +32,11 @@ public class product {
 
     private List<commande> commandes;
 @ManyToOne
+@JsonBackReference
 private  Vendeur vendeur;
+@OneToMany
+    private List<Achat> achats;
+
  public product(String nom, double prix, category categorie) {
  }
 
