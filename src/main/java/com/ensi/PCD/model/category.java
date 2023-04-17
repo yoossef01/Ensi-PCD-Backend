@@ -6,14 +6,11 @@ package com.ensi.PCD.model;
 //
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -33,6 +30,10 @@ public class category {
      access = Access.WRITE_ONLY
  )
  private List<product> produits;
+ @ManyToOne
+ @JsonBackReference
+ private  Vendeur vendeur;
+
 
  public category(String nom) {
      this.nom = nom;
@@ -50,7 +51,15 @@ public class category {
      return this.produits;
  }
 
- public void setId(final Integer id) {
+    public Vendeur getVendeur() {
+        return vendeur;
+    }
+
+    public void setVendeur(Vendeur vendeur) {
+        this.vendeur = vendeur;
+    }
+
+    public void setId(final Integer id) {
      this.id = id;
  }
 
@@ -65,10 +74,11 @@ public class category {
      this.produits = produits;
  }
 
- public category(final Integer id, final String nom, final List<product> produits) {
+ public category(final Integer id, final String nom, final List<product> produits,final Vendeur v) {
      this.id = id;
      this.nom = nom;
      this.produits = produits;
+     this.vendeur=v;
  }
 
  public category() {

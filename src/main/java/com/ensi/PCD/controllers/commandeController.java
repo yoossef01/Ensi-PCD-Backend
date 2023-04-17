@@ -29,10 +29,14 @@ public class commandeController {
     public List<commande> getAllCommandes() {
         return this.CommandeService.getAllCommandes();
     }
+    @GetMapping("/commandesByClient/{id}")
+    public List<commande> getCommandesByClient(@PathVariable Integer id){
+        return this.CommandeService.getCommandesByClient( id );
+    }
     @GetMapping("/by-date")
     public List<commande> findByDateBetween(@RequestParam("start") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                                             @RequestParam("end") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-        return CommandeService.getAchatsByDateRange(startDate, endDate);
+        return CommandeService.getCommandesByDateRange(startDate, endDate);
     }
 
     @PostMapping("/add")
