@@ -24,7 +24,7 @@ public class categoryServices implements categoryInterfaceService {
  public List<category> getAllCategories() {
      return this.cc.findAll();
  }
-
+public List<category> getAllCategoriesByVendeur(Integer id){return  this.cc.getCategoriesByVendeur( id );}
  public void deleteCategorie(Integer i) {
      category c = this.getCategory(i);
      List<product> l = c.getProduits();
@@ -45,5 +45,6 @@ public class categoryServices implements categoryInterfaceService {
  public categoryServices(final categoryRepository cc) {
      this.cc = cc;
  }
+
 }
 

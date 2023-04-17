@@ -33,7 +33,8 @@ public class categoryController {
  public List<category> getAllCategories() {
      return this.sc.getAllCategories();
  }
-
+@GetMapping("/categoriesByVend/{id}")
+public  List<category> getAllCategoriesByVendeur(@PathVariable Integer id){return this.sc.getAllCategoriesByVendeur( id );}
  @PostMapping({"/add"})
  public category ajouterCategorie(@RequestBody category c) {
      category newCategory = this.sc.save(c);

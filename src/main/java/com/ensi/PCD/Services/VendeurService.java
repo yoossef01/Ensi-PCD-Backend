@@ -17,6 +17,8 @@ public class VendeurService implements VendeurInterfaceService{
     public Vendeur getVendeurById(Integer id) {
        return this.vendeurRepository.findById(id).get();
     }
+    @Override
+    public Vendeur getVendeurByEmail(String email){return this.vendeurRepository.findByEmail( email ).get();}
 
     @Override
     public void SaveVendeur(Vendeur v) {
@@ -26,5 +28,12 @@ public class VendeurService implements VendeurInterfaceService{
     @Override
     public Client getClientById(Integer id) {
         return this.userRepository.findById(id).get();
+    }
+    @Override
+    public Client getClientByEmail(String email){return this.userRepository.findByEmail( email ).get();}
+
+    @Override
+    public void SaveClient(Client c) {
+        this.userRepository.save(c);
     }
 }
