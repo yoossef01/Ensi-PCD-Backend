@@ -19,16 +19,14 @@ public class Achat {
     @Id
     private String id;
     private String nom;
-    private String montant;
+    private Integer montant;
     private String quantite;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @ManyToOne
     private product product;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "vendeur_id", nullable = false)
-    @JsonBackReference
     private Vendeur vendeur;
 
 

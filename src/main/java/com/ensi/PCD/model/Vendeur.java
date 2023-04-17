@@ -41,11 +41,10 @@ public class Vendeur implements UserDetails {
 
     @OneToMany(mappedBy = "vendeur")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    @JsonManagedReference
     private  List<product> produits;
 
     @OneToMany(mappedBy = "vendeur", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Achat> achats;
 
     @Override
