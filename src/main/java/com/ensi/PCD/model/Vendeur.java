@@ -1,8 +1,10 @@
 package com.ensi.PCD.model;
 
 import com.ensi.PCD.config.GrantedAuthorityDeserializer;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,11 +39,15 @@ public class Vendeur implements UserDetails {
     private String password;
     private String fax;
     @Enumerated(EnumType.STRING)
-    private RoleVendeur role;
+    private Role role;
 
     @OneToMany(mappedBy = "vendeur")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private  List<product> produits;
+    @OneToMany(mappedBy = "vendeur")
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    @JsonManagedReference
+    private  List<category> categories;
 
     @OneToMany(mappedBy = "vendeur", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)

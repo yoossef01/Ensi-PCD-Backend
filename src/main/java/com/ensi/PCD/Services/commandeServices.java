@@ -44,11 +44,14 @@ public  void saveCommande(commande commande){
     }
 
     // method to get a list of achats within a certain date range
-    public List<commande> getAchatsByDateRange(Date startDate, Date endDate) {
+    public List<commande> getCommandesByDateRange(Date startDate, Date endDate) {
         return commandeRepository.findByDateBetween(startDate, endDate);
     }
     public commandeServices(final commandeRepository ar) {
         this.commandeRepository = ar;
+    }
+    public List<commande> getCommandesByClient(Integer id) {
+        return this.commandeRepository.getCommandesByClient( id );
     }
 
 }

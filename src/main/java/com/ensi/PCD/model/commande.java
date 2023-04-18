@@ -1,4 +1,5 @@
 package com.ensi.PCD.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,20 +11,29 @@ public class commande {
     @jakarta.persistence.Id
     private String id;
     private double montant;
+    private String nom;
     private int quantite;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-            //(fetch = FetchType.LAZY)
 
+            @ManyToOne
+
+            @JsonBackReference
+            private Client client;
     @ManyToOne
     private product product;
-    public commande(String id, double m, int q, Date d){
+    public commande(String id,String nom, double m, int q, Date d){
         this.id=id;
+        this.nom=nom;
         this.montant=m;
         this.quantite=q;
         this.date=d;
 
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String getId() {
@@ -49,15 +59,31 @@ public class commande {
     public void setDate(final Date date){
         this.date=date;
     }
-public  void setProduct(final product product){
+
+    public Client getClient() {
+        return client;
+    }
+
+    public  void setProduct(final product product){
         this.product= product;
 }
-    public commande(final String id, final double m, final int q, final Date d, final product p){
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public commande(final String id, final String n, final double m, final int q, final Date d, final product p, final  Client c){
        this.id=id;
+       this.nom=n;
         this.montant=m;
         this.quantite=q;
         this.date=d;
         this.product=p;
+        this.client=c;
     }
     public commande(){}
 }
