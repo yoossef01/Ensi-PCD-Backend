@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.util.List;
 
@@ -37,7 +38,9 @@ private  Vendeur vendeur;
 @OneToMany(mappedBy = "product")
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 private List<Achat> achats;
-
+@OneToOne (mappedBy = "product")
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+private Description description;
  public product(String nom, double prix, category categorie) {
  }
 
