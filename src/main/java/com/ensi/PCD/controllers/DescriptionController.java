@@ -17,7 +17,7 @@ public class DescriptionController {
        return this.descriptionService.getDescriptionById( id );
     }
    @GetMapping("/product/{id}")
-   public Description GetDescriptionByVendeur(@PathVariable String id){
+   public Description GetDescriptionByProduct(@PathVariable String id){
       return   this.descriptionService.getDescriptionByProduct( id );
    }
 
