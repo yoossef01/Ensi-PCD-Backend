@@ -1,10 +1,7 @@
 package com.ensi.PCD.model;
 
 import com.ensi.PCD.config.GrantedAuthorityDeserializer;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_vendeur")
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Vendeur implements UserDetails {
 
     @Id
@@ -53,6 +50,9 @@ public class Vendeur implements UserDetails {
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Achat> achats;
 
+    @OneToOne(mappedBy = "vendeur")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private TemplateContent templateContent;
     @Override
     @JsonDeserialize(using = GrantedAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {

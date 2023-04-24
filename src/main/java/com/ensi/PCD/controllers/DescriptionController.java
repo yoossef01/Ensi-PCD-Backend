@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin({"*"})
 @RestController
-@RequestMapping({"/apidescprition"})
+@RequestMapping({"/apidescription"})
 public class DescriptionController {
     @Autowired
     private DescriptionService descriptionService;
