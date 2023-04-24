@@ -38,7 +38,6 @@ public class AuthenticationService {
     saveUserToken(  savedUser, jwtToken);
     return AuthenticationResponse.builder()
         .token(jwtToken)
-
         .build();
   }
 

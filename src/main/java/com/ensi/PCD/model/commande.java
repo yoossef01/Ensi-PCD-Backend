@@ -17,10 +17,8 @@ public class commande {
     private Date date;
 
 
-            @ManyToOne
-
-            @JsonBackReference
-            private Client client;
+    @ManyToOne
+    private Client client;
     @ManyToOne
     private product product;
     public commande(String id,String nom, double m, int q, Date d){

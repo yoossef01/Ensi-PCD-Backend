@@ -33,6 +33,7 @@ public class productService implements produitInterfaceServices {
          p.setPhoto(nomPhoto);
      }
 
+
      this.pr.save(p);
  }
  public void createProduit(product product,MultipartFile mf){this.saveProduct( product,mf );}

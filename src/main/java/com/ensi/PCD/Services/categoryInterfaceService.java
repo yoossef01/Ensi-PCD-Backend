@@ -11,4 +11,5 @@ public interface categoryInterfaceService {
     void deleteCategorie(Integer i);
 
     category getCategory(Integer idc);
+    List<category> getAllCategoriesByVendeur(Integer id);
 }

@@ -23,6 +23,7 @@ public class VendeurController {
     public void updateVendeur(@RequestBody Vendeur v){
         this.vendeurService.SaveVendeur( v );
     }
+
     @GetMapping("/client/{id}")
     public Client getClientById(@PathVariable Integer id) {
         return this.vendeurService.getClientById(id);

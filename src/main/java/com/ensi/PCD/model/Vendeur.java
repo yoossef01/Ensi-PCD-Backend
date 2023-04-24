@@ -1,10 +1,11 @@
 package com.ensi.PCD.model;
 
 import com.ensi.PCD.config.GrantedAuthorityDeserializer;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import com.fasterxml.jackson.annotation.*;
+import com.ensi.PCD.token.Token;
+import com.ensi.PCD.token.TokenVendeur;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_vendeur")
-
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"enabled"})
 public class Vendeur implements UserDetails {
 
     @Id
@@ -46,12 +47,16 @@ public class Vendeur implements UserDetails {
     private  List<product> produits;
     @OneToMany(mappedBy = "vendeur")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-    @JsonManagedReference
     private  List<category> categories;
 
-    @OneToMany(mappedBy = "vendeur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "vendeur")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Achat> achats;
+
+
+    @OneToMany(mappedBy = "vendeur")
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    private List<TokenVendeur> tokens;
 
     @Override
     @JsonDeserialize(using = GrantedAuthorityDeserializer.class)

@@ -4,6 +4,8 @@ import com.ensi.PCD.Dao.UserRepository;
 import com.ensi.PCD.Dao.VendeurRepository;
 import com.ensi.PCD.model.Vendeur;
 import com.ensi.PCD.model.Client;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -59,3 +61,5 @@ public class ApplicationConfig {
   }
 
 }
+
+

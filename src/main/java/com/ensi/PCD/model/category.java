@@ -31,7 +31,6 @@ public class category {
  )
  private List<product> produits;
  @ManyToOne
- @JsonBackReference
  private  Vendeur vendeur;
 
 

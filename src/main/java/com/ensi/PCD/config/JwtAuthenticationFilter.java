@@ -1,6 +1,7 @@
 package com.ensi.PCD.config;
 
 import com.ensi.PCD.token.TokenRepository;
+import com.ensi.PCD.token.TokenVendeurRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private final JwtService jwtService;
   private final UserDetailsService userDetailsService;
   private final TokenRepository tokenRepository;
+  private final TokenVendeurRepository tokenVendeurRepository;
 
   @Override
   protected void doFilterInternal(
@@ -42,10 +44,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     userEmail = jwtService.extractUsername(jwt);
     if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
       UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-      var isTokenValid = tokenRepository.findByToken(jwt)
+      boolean isTokenValid = tokenRepository.findByToken(jwt)
           .map(t -> !t.isExpired() && !t.isRevoked())
           .orElse(false);
-      if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
+      boolean isVendeurTokenValid = tokenVendeurRepository.findByToken(jwt)
+              .map(t -> !t.isExpired() && !t.isRevoked())
+              .orElse(false);
+
+      if (jwtService.isTokenValid(jwt, userDetails) && (isTokenValid || isVendeurTokenValid)) {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
             userDetails,
             null,

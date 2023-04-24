@@ -1,11 +1,16 @@
 package com.ensi.PCD.auth;
 
 import com.ensi.PCD.model.Vendeur;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.io.IOException;
 
 @CrossOrigin(origins = "*")
 @EnableWebMvc
@@ -40,6 +45,7 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.authenticateVendeur(requestVendeur));
   }
+
 
 
 }
