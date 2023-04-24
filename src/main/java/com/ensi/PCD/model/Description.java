@@ -20,7 +20,7 @@ public class Description {
     private String material;
     private String color;
     private String shortDescription;
-    private  String LongDescription;
+    private  String longDescription;
     @OneToOne
     @JoinColumn(name = "product_id")
     private product product;

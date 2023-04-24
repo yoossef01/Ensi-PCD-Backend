@@ -2,9 +2,13 @@ package com.ensi.PCD.model;
 
 import com.ensi.PCD.config.GrantedAuthorityDeserializer;
 
+
 import com.fasterxml.jackson.annotation.*;
 import com.ensi.PCD.token.Token;
 import com.ensi.PCD.token.TokenVendeur;
+
+
+import com.fasterxml.jackson.annotation.*;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
@@ -57,6 +61,10 @@ public class Vendeur implements UserDetails {
     @OneToMany(mappedBy = "vendeur")
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<TokenVendeur> tokens;
+
+    @OneToOne(mappedBy = "vendeur")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private TemplateContent templateContent;
 
     @Override
     @JsonDeserialize(using = GrantedAuthorityDeserializer.class)

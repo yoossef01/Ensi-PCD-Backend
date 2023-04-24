@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin({"*"})
 @RestController
-@RequestMapping({"/apidescprition"})
+@RequestMapping({"/apidescription"})
 public class DescriptionController {
     @Autowired
     private DescriptionService descriptionService;
@@ -17,7 +17,7 @@ public class DescriptionController {
        return this.descriptionService.getDescriptionById( id );
     }
    @GetMapping("/product/{id}")
-   public Description GetDescriptionByVendeur(@PathVariable String id){
+   public Description GetDescriptionByProduct(@PathVariable String id){
       return   this.descriptionService.getDescriptionByProduct( id );
    }
 
