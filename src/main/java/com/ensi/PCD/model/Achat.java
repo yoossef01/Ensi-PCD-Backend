@@ -18,19 +18,16 @@ import java.util.Date;
 @NoArgsConstructor
 public class Achat {
     @Id
+    @GeneratedValue
     private String id;
     private String nom;
     private Integer montant;
-    private String quantite;
+    private Integer quantite;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private product product;
     @ManyToOne
-    @JoinColumn(name = "vendeur_id", nullable = false)
-    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private Vendeur vendeur;
 
 

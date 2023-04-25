@@ -9,6 +9,7 @@ import java.util.Date;
 @Entity
 public class commande {
     @jakarta.persistence.Id
+    @GeneratedValue
     private String id;
     private double montant;
     private String nom;
