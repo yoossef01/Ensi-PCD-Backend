@@ -6,6 +6,8 @@ import com.ensi.PCD.model.Vendeur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin({"*"})
 @RestController
 @RequestMapping({"/api"})
@@ -17,6 +19,9 @@ public class VendeurController {
     public Vendeur getVendeurById(@PathVariable Integer id) {
         return this.vendeurService.getVendeurById(id);
     }
+
+    @GetMapping("/vendeur/all")
+    public List<Vendeur> getAllVendeurs(){return this.vendeurService.getAllVendeurs();}
     @GetMapping("/vendeur/email/{email}")
     public Vendeur getVendeurByEmail(@PathVariable String email){return this.vendeurService.getVendeurByEmail( email );}
     @PutMapping("/vendeur/update")

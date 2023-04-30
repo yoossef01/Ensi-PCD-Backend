@@ -7,6 +7,8 @@ import com.ensi.PCD.model.Vendeur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VendeurService implements VendeurInterfaceService{
     @Autowired
@@ -17,6 +19,8 @@ public class VendeurService implements VendeurInterfaceService{
     public Vendeur getVendeurById(Integer id) {
        return this.vendeurRepository.findById(id).get();
     }
+    @Override
+    public List<Vendeur> getAllVendeurs(){return this.vendeurRepository.findAll();}
     @Override
     public Vendeur getVendeurByEmail(String email){return this.vendeurRepository.findByEmail( email ).get();}
 
