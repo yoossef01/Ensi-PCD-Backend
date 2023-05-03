@@ -17,7 +17,7 @@ public class commandeController {
     private commandeServices CommandeService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<commande> findById(@PathVariable String id) {
+    public ResponseEntity<commande> findById(@PathVariable Integer id) {
         commande commande = CommandeService.getCommandeById(id);
         if (commande != null) {
             return ResponseEntity.ok( commande );
@@ -51,7 +51,7 @@ public class commandeController {
     }
 
     @DeleteMapping("/del/{id}")
-    public void deleteCommande(@PathVariable String id) {
+    public void deleteCommande(@PathVariable Integer id) {
         this.CommandeService.deleteCommande(id);
 
 

@@ -14,9 +14,7 @@ public class commandeServices {
     @Autowired
     private commandeRepository commandeRepository;
 public  void saveCommande(commande commande){
-    if (commande.getId() == null) {
-        commande.setId( UUID.randomUUID().toString());
-    }
+
     this.commandeRepository.save( commande );
 }
     // method to create a new achat
@@ -29,7 +27,7 @@ public  void saveCommande(commande commande){
        //this.saveAchat(  achat)}
 
     // method to delete an achat by ID
-    public void deleteCommande(String achatId) {
+    public void deleteCommande(Integer achatId) {
         commandeRepository.deleteById(achatId);
     }
 
@@ -39,7 +37,7 @@ public  void saveCommande(commande commande){
     }
 
     // method to get an achat by ID
-    public commande getCommandeById(String achatId) {
+    public commande getCommandeById(Integer achatId) {
         return commandeRepository.findById(achatId).orElse(null);
     }
 

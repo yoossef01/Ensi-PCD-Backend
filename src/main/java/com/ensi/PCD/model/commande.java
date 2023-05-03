@@ -10,7 +10,7 @@ import java.util.Date;
 public class commande {
     @jakarta.persistence.Id
     @GeneratedValue
-    private String id;
+    private Integer id;
     private double montant;
     private String nom;
     private int quantite;
@@ -22,7 +22,7 @@ public class commande {
     private Client client;
     @ManyToOne
     private product product;
-    public commande(String id,String nom, double m, int q, Date d){
+    public commande(Integer id,String nom, double m, int q, Date d){
         this.id=id;
         this.nom=nom;
         this.montant=m;
@@ -35,7 +35,7 @@ public class commande {
         return nom;
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
     public double getMontant(){
@@ -48,7 +48,7 @@ public class commande {
     public product getProduct(){
         return this.product;
     }
-    public void setId(final String Id) {
+    public void setId(final Integer Id) {
         this.id = Id;
     }
     public void setMontant(final double montant){
@@ -75,7 +75,7 @@ public class commande {
         this.client = client;
     }
 
-    public commande(final String id, final String n, final double m, final int q, final Date d, final product p, final  Client c){
+    public commande(final Integer id, final String n, final double m, final int q, final Date d, final product p, final  Client c){
        this.id=id;
        this.nom=n;
         this.montant=m;

@@ -22,7 +22,7 @@ public class AchatController {
         this.achatService.createAchat(achat);
     }
     @GetMapping({"/achatById/{id}"})
-    public Achat getachatById(@PathVariable String id) {
+    public Achat getachatById(@PathVariable Integer id) {
         return this.achatService.getAchatById(id);
     }
     @GetMapping({"/achatByVendeur/{id}"})

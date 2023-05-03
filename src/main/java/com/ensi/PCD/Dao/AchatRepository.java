@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface AchatRepository extends JpaRepository<Achat,String> {
+public interface AchatRepository extends JpaRepository<Achat,Integer> {
     List<Achat> findByDateBetween(Date startDate, Date endDate);
     @Query("select p from Achat p where p.vendeur.id=:x")
     List<Achat> getAchatByVendeur(@Param("x") Integer vendeurId);

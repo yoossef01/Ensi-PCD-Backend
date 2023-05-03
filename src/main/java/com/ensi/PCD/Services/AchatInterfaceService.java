@@ -8,7 +8,7 @@ public interface AchatInterfaceService {
     void saveAchat (Achat achat);
 
     List<Achat> getallAchat ();
-    Achat getAchatById(String achatId);
+    Achat getAchatById(Integer achatId);
     List<Achat> getAchatByVendeur(Integer vendeurId);
     void createAchat(Achat achat);
 
