@@ -15,9 +15,7 @@ public class AchatService implements AchatInterfaceService {
 
     @Override
     public void saveAchat(Achat achat) {
-        if (achat.getId() == null) {
-            achat.setId( UUID.randomUUID().toString());
-        }
+
         this.achatRepository.save(achat);
     }
 
@@ -27,7 +25,7 @@ public class AchatService implements AchatInterfaceService {
     }
 
     @Override
-    public Achat getAchatById(String achatId) {
+    public Achat getAchatById(Integer achatId) {
         return (Achat)this.achatRepository.findById(achatId).get();
     }
 
