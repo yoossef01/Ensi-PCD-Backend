@@ -26,7 +26,7 @@ public class TokenVendeur {
 
     public boolean expired;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendeur_id")
     public com.ensi.PCD.model.Vendeur vendeur;
 }

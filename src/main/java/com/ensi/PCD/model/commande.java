@@ -19,8 +19,10 @@ public class commande {
 
 
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private product product;
     public commande(String id,String nom, double m, int q, Date d){
         this.id=id;

@@ -46,23 +46,23 @@ public class Vendeur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "vendeur")
+    @OneToMany(mappedBy = "vendeur" ,cascade = CascadeType.ALL)
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private  List<product> produits;
-    @OneToMany(mappedBy = "vendeur")
+    @OneToMany(mappedBy = "vendeur" ,cascade = CascadeType.ALL)
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private  List<category> categories;
 
-    @OneToMany(mappedBy = "vendeur")
+    @OneToMany(mappedBy = "vendeur" ,cascade = CascadeType.ALL)
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<Achat> achats;
 
 
-    @OneToMany(mappedBy = "vendeur")
+    @OneToMany(mappedBy = "vendeur" ,cascade = CascadeType.ALL)
     @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
     private List<TokenVendeur> tokens;
 
-    @OneToOne(mappedBy = "vendeur")
+    @OneToOne(mappedBy = "vendeur" ,cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private TemplateContent templateContent;
 

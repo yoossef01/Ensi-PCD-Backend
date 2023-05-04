@@ -2,10 +2,7 @@ package com.ensi.PCD.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -28,18 +25,20 @@ public class product {
  private int quantite;
  private double prix_achat;
  @ManyToOne
+ @JoinColumn(name = "categorie_id")
  private category categorie;
 
- @OneToMany(mappedBy = "product")
+ @OneToMany(mappedBy = "product" ,cascade = CascadeType.ALL)
  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
  private List<commande> commandes;
-@ManyToOne
+ @ManyToOne
+ @JoinColumn(name = "vendeur_id")
 private  Vendeur vendeur;
-@OneToMany(mappedBy = "product")
+@OneToMany(mappedBy = "product" ,cascade = CascadeType.ALL)
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 private List<Achat> achats;
 
-@OneToOne (mappedBy = "product")
+@OneToOne (mappedBy = "product" ,cascade = CascadeType.ALL)
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 private Description description;
 public product(String nom, double prix, category categorie) {

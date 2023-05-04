@@ -28,7 +28,10 @@ public class Achat {
     @ManyToOne
     private product product;
     @ManyToOne
+    @JoinColumn(name = "vendeur_id")
     private Vendeur vendeur;
 
-
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private  Client client;
 }

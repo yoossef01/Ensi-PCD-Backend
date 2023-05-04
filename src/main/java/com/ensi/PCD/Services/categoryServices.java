@@ -27,14 +27,6 @@ public class categoryServices implements categoryInterfaceService {
 public List<category> getAllCategoriesByVendeur(Integer id){return  this.cc.getCategoriesByVendeur( id );}
  public void deleteCategorie(Integer i) {
      category c = this.getCategory(i);
-     List<product> l = c.getProduits();
-     Iterator<product> var5 = l.iterator();
-
-     while(var5.hasNext()) {
-         product p = var5.next();
-         p.setCategorie(null);
-     }
-
      this.cc.delete(c);
  }
 

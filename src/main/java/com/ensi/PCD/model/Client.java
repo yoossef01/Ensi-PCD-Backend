@@ -37,9 +37,13 @@ public class Client implements UserDetails {
   private Role role;
 
 
-  @OneToMany(mappedBy = "client")
+  @OneToMany(mappedBy = "client" ,cascade = CascadeType.ALL)
   @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
   private List<Token> tokens;
+
+  @OneToMany(mappedBy = "client" ,cascade = CascadeType.ALL)
+  @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+  private  List<Achat> achats;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

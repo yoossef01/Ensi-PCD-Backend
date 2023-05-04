@@ -6,12 +6,17 @@ import com.ensi.PCD.model.Vendeur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin({"*"})
 @RestController
 @RequestMapping({"/api"})
 public class VendeurController {
     @Autowired
     private VendeurService vendeurService;
+
+    @GetMapping("/vendeur/all")
+    public List<Vendeur> getAllVendeur() {return this.vendeurService.getAllVendeur();}
 
     @GetMapping("/vendeur/{id}")
     public Vendeur getVendeurById(@PathVariable Integer id) {
@@ -31,6 +36,11 @@ public class VendeurController {
     @GetMapping("/client/email/{email}")
     public Client getClientByEmail(@PathVariable String email) {
         return this.vendeurService.getClientByEmail(email);
+    }
+
+    @DeleteMapping("/del/{id}")
+    public void DeleteVendeur(@PathVariable Integer id) {
+          this.vendeurService.DeleteVendeur(id);
     }
 
 }

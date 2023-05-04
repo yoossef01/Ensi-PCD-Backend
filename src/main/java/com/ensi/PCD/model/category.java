@@ -23,14 +23,11 @@ public class category {
  )
  private Integer id;
  private String nom;
- @OneToMany(
-     mappedBy = "categorie"
- )
- @JsonProperty(
-     access = Access.WRITE_ONLY
- )
+ @OneToMany(mappedBy = "categorie" ,cascade = CascadeType.ALL)
+ @JsonProperty(access = Access.WRITE_ONLY)
  private List<product> produits;
  @ManyToOne
+ @JoinColumn(name = "vendeur_id")
  private  Vendeur vendeur;
 
 

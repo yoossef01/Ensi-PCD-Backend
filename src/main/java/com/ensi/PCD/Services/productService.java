@@ -84,7 +84,8 @@ public class productService implements produitInterfaceServices {
         return this.pr.getProductsByVendeur(id);
     }
 
- public void deleteProduct(String idp) {
+
+    public void deleteProduct(String idp) {
      this.pr.deleteById(idp);
  }
 
