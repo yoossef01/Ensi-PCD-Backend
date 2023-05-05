@@ -5,6 +5,8 @@ import com.ensi.PCD.model.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin({"*"})
 @RestController
 @RequestMapping({"/apidescription"})
@@ -16,6 +18,8 @@ public class DescriptionController {
     public Description GetDescription(@PathVariable String id){
        return this.descriptionService.getDescriptionById( id );
     }
+    @GetMapping("/all")
+    public List<Description> GetAllDescription(){return this.descriptionService.getAllDescription();}
    @GetMapping("/product/{id}")
    public Description GetDescriptionByProduct(@PathVariable String id){
       return   this.descriptionService.getDescriptionByProduct( id );
