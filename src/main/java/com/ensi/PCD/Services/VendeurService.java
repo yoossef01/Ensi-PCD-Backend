@@ -7,7 +7,6 @@ import com.ensi.PCD.token.TokenVendeur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -26,6 +25,8 @@ public class VendeurService implements VendeurInterfaceService{
         return this.vendeurRepository.findAll();
     }
 
+    @Override
+    public List<Vendeur> getAllVendeurs(){return this.vendeurRepository.findAll();}
     @Override
     public Vendeur getVendeurByEmail(String email){return this.vendeurRepository.findByEmail( email ).get();}
 

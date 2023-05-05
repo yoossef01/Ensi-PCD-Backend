@@ -15,13 +15,13 @@ public class VendeurController {
     @Autowired
     private VendeurService vendeurService;
 
-    @GetMapping("/vendeur/all")
-    public List<Vendeur> getAllVendeur() {return this.vendeurService.getAllVendeur();}
-
     @GetMapping("/vendeur/{id}")
     public Vendeur getVendeurById(@PathVariable Integer id) {
         return this.vendeurService.getVendeurById(id);
     }
+
+    @GetMapping("/vendeur/all")
+    public List<Vendeur> getAllVendeurs(){return this.vendeurService.getAllVendeurs();}
     @GetMapping("/vendeur/email/{email}")
     public Vendeur getVendeurByEmail(@PathVariable String email){return this.vendeurService.getVendeurByEmail( email );}
     @PutMapping("/vendeur/update")

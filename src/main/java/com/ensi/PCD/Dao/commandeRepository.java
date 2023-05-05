@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Date;
 import java.util.List;
 
-public interface commandeRepository extends JpaRepository<commande, String> {
+public interface commandeRepository extends JpaRepository<commande, Integer> {
     List<commande> findByDateBetween(Date startDate, Date endDate);
     @Query("select c from commande c where c.client.id=:x")
     List<commande> getCommandesByClient(@Param("x") Integer idClient);

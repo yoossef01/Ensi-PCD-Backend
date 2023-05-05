@@ -19,6 +19,7 @@ public interface VendeurInterfaceService {
     void DeleteVendeur(Integer id);
 
     public Client getClientById(Integer id);
+    public List<Vendeur> getAllVendeurs();
 
     void SaveClient(Client c);
 }

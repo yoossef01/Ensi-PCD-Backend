@@ -19,7 +19,7 @@ import java.util.Date;
 public class Achat {
     @Id
     @GeneratedValue
-    private String id;
+    private Integer id;
     private String nom;
     private Integer montant;
     private Integer quantite;
