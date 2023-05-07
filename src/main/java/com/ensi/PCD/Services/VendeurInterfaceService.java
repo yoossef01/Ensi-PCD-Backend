@@ -10,6 +10,8 @@ public interface VendeurInterfaceService {
 
     List<Vendeur> getAllVendeur();
 
+    Vendeur getVendeurByNomboutique(String nomboutique);
+
     Vendeur getVendeurByEmail(String email);
 
     Client getClientByEmail(String email);

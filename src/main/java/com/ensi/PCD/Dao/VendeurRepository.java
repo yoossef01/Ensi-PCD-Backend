@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface VendeurRepository extends JpaRepository <Vendeur,Integer>{
     @Query("select c from Vendeur c where c.email=:x")
     Optional<Vendeur> findByEmail(@Param("x") String email);
+    @Query("select c from Vendeur c where c.nomboutique=:x")
+    Optional<Vendeur> findByNomboutique(@Param("x") String nomboutique);
 }

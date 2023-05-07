@@ -24,10 +24,18 @@ public class VendeurController {
     public List<Vendeur> getAllVendeurs(){return this.vendeurService.getAllVendeurs();}
     @GetMapping("/vendeur/email/{email}")
     public Vendeur getVendeurByEmail(@PathVariable String email){return this.vendeurService.getVendeurByEmail( email );}
+
+    @GetMapping("/vendeur/nomboutique/{nomboutique}")
+    public Vendeur getVendeurByNonboutique(@PathVariable String nomboutique)
+    {
+        return this.vendeurService.getVendeurByNomboutique(nomboutique);
+    }
+
     @PutMapping("/vendeur/update")
     public void updateVendeur(@RequestBody Vendeur v){
         this.vendeurService.SaveVendeur( v );
     }
+
 
     @GetMapping("/client/{id}")
     public Client getClientById(@PathVariable Integer id) {
@@ -42,5 +50,6 @@ public class VendeurController {
     public void DeleteVendeur(@PathVariable Integer id) {
           this.vendeurService.DeleteVendeur(id);
     }
+
 
 }

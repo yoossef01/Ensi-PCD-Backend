@@ -88,6 +88,7 @@ public class AuthenticationService {
             .idTemplate(request.getIdTemplate())
             .nom(request.getNom())
             .prenom(request.getPrenom())
+            .nomboutique(request.getNomboutique())
             .adresse(request.getAdresse())
             .tel(request.getTel())
             .email(request.getEmail())

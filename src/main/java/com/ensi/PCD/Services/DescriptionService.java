@@ -7,6 +7,7 @@ import com.ensi.PCD.model.commande;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 @Service
 
@@ -33,4 +34,6 @@ public class DescriptionService {
     public Description getDescriptionByProduct(String id){
         return this.DR.getDescriptionByProduct( id );
     }
+
+    public List<Description> getAllDescription(){return this.DR.findAll();}
 }

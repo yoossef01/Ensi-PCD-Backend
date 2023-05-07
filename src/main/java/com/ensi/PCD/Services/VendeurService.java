@@ -26,6 +26,13 @@ public class VendeurService implements VendeurInterfaceService{
     }
 
     @Override
+    public Vendeur getVendeurByNomboutique(String nomboutique) {
+        return this.vendeurRepository.findByNomboutique(nomboutique).get();
+    }
+
+
+
+    @Override
     public List<Vendeur> getAllVendeurs(){return this.vendeurRepository.findAll();}
     @Override
     public Vendeur getVendeurByEmail(String email){return this.vendeurRepository.findByEmail( email ).get();}
