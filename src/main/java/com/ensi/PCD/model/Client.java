@@ -1,7 +1,6 @@
 package com.ensi.PCD.model;
 
 import com.ensi.PCD.token.Token;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,6 +43,10 @@ public class Client implements UserDetails {
   @OneToMany(mappedBy = "client" ,cascade = CascadeType.ALL)
   @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
   private  List<Achat> achats;
+
+  @OneToMany(mappedBy = "client" ,cascade = CascadeType.ALL)
+  @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+  private  List<ProductToCompare> productToCompare;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

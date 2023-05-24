@@ -38,6 +38,10 @@ private  Vendeur vendeur;
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 private List<Achat> achats;
 
+@OneToOne (mappedBy = "product")
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+private ProductToCompare productToCompare;
+
 @OneToOne (mappedBy = "product" ,cascade = CascadeType.ALL)
 @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 private Description description;
